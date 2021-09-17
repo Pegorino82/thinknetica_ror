@@ -8,22 +8,22 @@
 =end
 
 class Route
+	attr_reader :stations
 
 	def initialize(start_station, end_station)
-		@start_station = start_station
-		@end_station = end_station
-		@stations = []
+		@stations = [start_station, end_station]
 	end
 
-	def stations()
-		return [@start_station, @stations, @end_station].flatten.compact
-	end
-
+	# оставляем начальную и конечную станции на своих местах
 	def add_station(station)
-		@stations.push(station)
+		@stations.insert(-2, station)
 	end
 
 	def del_station(station)
 		@stations.delete(station)
+	end
+
+	def get_station_by_index(index)
+		return @stations[index]
 	end
 end
