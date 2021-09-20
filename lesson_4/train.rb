@@ -15,7 +15,7 @@
 =end
 
 class Train
-	attr_reader :number, :speed, :wagons
+	attr_reader :number, :speed, :wagons, :route
 
 	def initialize(number)
 		@number = number
@@ -26,10 +26,10 @@ class Train
 	end
 
 	def speed_up(value)
-		@speed = value
+		@speed += value
 	end
 
-	def speed_down
+	def stop
 		@speed = 0
 	end
 	
@@ -55,26 +55,26 @@ class Train
 	end
 
 	def get_current_station
-		@route.get_station_by_index(@current_station_index)
+		@route.stations[@current_station_index]
 	end
 
 	def get_next_station
-		@route.get_station_by_index(@current_station_index + 1)
+		@route.stations[@current_station_index + 1]
 	end
 
 	def get_prev_station
-		@route.get_station_by_index(@current_station_index - 1)
+		@route.stations[@current_station_index - 1]
 	end
 
 	protected
 
 	# пользователь не должен иметь возможности поменять тип поеза
-	def train_type
+	def type
 		'unset'
 	end
 
 	# запрещаем прицеплять к поезду вагоны другого типа
 	def add_wagon!(wagon)
-		self.wagons.push(wagon) if wagon.wagon_type === self.train_type
+		self.wagons.push(wagon) if wagon.type === self.type
 	end
 end

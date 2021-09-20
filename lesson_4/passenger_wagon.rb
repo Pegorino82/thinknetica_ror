@@ -1,4 +1,4 @@
 require_relative 'wagon'
 
-class PassWagon < Wagon
+class PassengerWagon < Wagon
 end

@@ -1,9 +1,9 @@
 require_relative 'train'
 
-class PassTrain < Train
+class PassengerTrain < Train
 	protected
 
-	def train_type
+	def type
 		'passenger'
 	end
 end

@@ -22,8 +22,4 @@ class Route
 	def del_station(station)
 		@stations.delete(station)
 	end
-
-	def get_station_by_index(index)
-		return @stations[index]
-	end
 end
