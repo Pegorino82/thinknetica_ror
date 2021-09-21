@@ -16,14 +16,14 @@ class Station
 	end
 
 	def arrive_train(train)
-		@trains.push(train)
+		trains.push(train)
 	end
 
 	def depart_train(train)
-		@trains.delete(train)
+		trains.delete(train)
 	end
 
 	def get_trains_by_type(train_type)
-		@trains.select {|train| train.train_type == train_type}            
+		trains.select {|train| train.train_type == train_type}
 	end
 end

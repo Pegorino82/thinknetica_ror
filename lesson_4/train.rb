@@ -38,7 +38,7 @@ class Train
 	end
 
 	def del_wagon
-		@train_size -= 1 if @speed == 0 && @train_size > 0
+		wagons.pop if speed == 0 && wagons.size > 0
 	end
 
 	def add_route(route)
@@ -47,7 +47,7 @@ class Train
 	end
 
 	def move_forward
-		@current_station_index += 1 if @current_station_index < @route.stations.size
+		@current_station_index += 1 if @current_station_index < route.stations.size
 	end
 
 	def move_backward
@@ -55,15 +55,15 @@ class Train
 	end
 
 	def get_current_station
-		@route.stations[@current_station_index]
+		route.stations[@current_station_index]
 	end
 
 	def get_next_station
-		@route.stations[@current_station_index + 1]
+		route.stations[@current_station_index + 1]
 	end
 
 	def get_prev_station
-		@route.stations[@current_station_index - 1]
+		route.stations[@current_station_index - 1]
 	end
 
 	protected
@@ -75,6 +75,6 @@ class Train
 
 	# запрещаем прицеплять к поезду вагоны другого типа
 	def add_wagon!(wagon)
-		self.wagons.push(wagon) if wagon.type === self.type
+		wagons.push(wagon) if wagon.type == type
 	end
 end
