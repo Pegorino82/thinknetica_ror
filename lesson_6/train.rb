@@ -90,8 +90,8 @@ class Train
   protected
   
   def validate!
+    raise "Invalid number length. Available length of 5 or 6." if self.number.length > 6 || self.number.length < 5
     raise "Invalid number format. Use XXX-XX or XXXXX" if self.number !~ /^[\w\d]{3}-?[\w\d]{2}$/
-    raise "Invalid number length. Available length of 5 or 6." if self.number.length > 6 && self.number.length < 5
   end
 
 	# пользователь не должен иметь возможности поменять тип поеза

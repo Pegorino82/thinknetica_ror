@@ -15,7 +15,7 @@ rescue TypeError => e
 end
 
 begin
-  Train.new('456')
+  Train.new('456-5')
 rescue => e
   puts "Train error #{e.inspect}"
   tp1 = PassengerTrain.new('999-AB')
