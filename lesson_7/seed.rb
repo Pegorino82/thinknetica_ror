@@ -42,17 +42,9 @@ station.arrive_train(passenger_train_2)
 
 station.each_train do |train|
   puts "Train #{train.type} \##{train.number} wagons: #{train.wagons.size}"
-  if train.type == 'passenger'
-    number = 1
-    train.each_wagon do |wagon|
-      puts "\t\##{number} #{wagon.type} free seats: #{wagon.free_seats} taken seats: #{wagon.taken_seats}"
-      number += 1
-    end
-  else
-    number = 1
-    train.each_wagon do |wagon|
-      puts "\t\##{number} #{wagon.type} free volume: #{wagon.free_volume} taken volume: #{wagon.taken_volume}"
-      number += 1
-    end
+  number = 1
+  train.each_wagon do |wagon|
+    puts "\t\##{number} #{wagon.type} free #{wagon.class::UNITS}: #{wagon.free_place} taken #{wagon.class::UNITS}: #{wagon.used_place}"
+
   end
 end

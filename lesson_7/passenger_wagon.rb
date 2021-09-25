@@ -1,22 +1,14 @@
 require_relative 'wagon'
 
 class PassengerWagon < Wagon
+  UNITS = 'seats'
 
   def initialize(total_seats)
-    @total_seats = total_seats
-    @taken_seats = 0
+    super (total_seats)
   end
 
   def take_seat
-    @taken_seats += 1 if @taken_seats < @total_seats
-  end
-
-  def taken_seats
-    @taken_seats
-  end
-
-  def free_seats
-    @total_seats - @taken_seats
+    @used_place += 1 if free_place > 0
   end
 
   def type

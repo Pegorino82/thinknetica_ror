@@ -150,18 +150,9 @@ class RailRoadManager
 		train = self.get_train(train_number)
 		return if !train
 
-		if train.type == 'passenger'
-			number = 1
-			train.each_wagon do |wagon|
-				puts "\t\##{number} #{wagon.type} free seats: #{wagon.free_seats} taken seats: #{wagon.taken_seats}"
-				number += 1
-			end
-		else
-			number = 1
-			train.each_wagon do |wagon|
-				puts "\t\##{number} #{wagon.type} free volume: #{wagon.free_volume} taken volume: #{wagon.taken_volume}"
-				number += 1
-			end
+		number = 1
+		train.each_wagon do |wagon|
+			puts "\t\##{number} #{wagon.type} free #{wagon.class::UNITS}: #{wagon.free_place} taken #{wagon.class::UNITS}: #{wagon.used_place}"
 		end
 	end
 
@@ -211,7 +202,7 @@ class RailRoadManager
 
 	def fill_wagon(wagon)
 		loop do
-			print "Do you want to #{wagon.type == 'cargo' ? 'add' : 'take'} #{wagon.type == 'cargo' ? 'volume' : 'seat'} (y/<any>)?"
+			print "Do you want to #{wagon.type == 'cargo' ? 'add' : 'take'} #{wagon.class::UNITS} (y/<any>)?"
 			to_add = gets.chomp
 			if to_add == 'y' && wagon.type == 'passenger'
 				wagon.take_seat
